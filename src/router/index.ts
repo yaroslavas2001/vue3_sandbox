@@ -12,6 +12,12 @@ const routes: Array<RouteRecordRaw> = [
         name: "catalog",
         alias: "/catalog",
         component: () => import("@views/catalog.vue"),
+      },
+      {
+        path: "/",
+        name: "test",
+        alias: "/test",
+        component: () => import("@views/pages/objects.vue"),
       }
     ],
   }
