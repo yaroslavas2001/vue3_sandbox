@@ -12,10 +12,10 @@
       <!-- <div class="col">
         <div class="ui-input"><input /></div>
       </div> -->
-      <div class="col pl-0"></div>
-      <div class="col-auto"></div>
+      <!-- <div class="col pl-0"></div>
+      <div class="col-auto"></div> -->
     </template>
-    
+
     <template #content="innerItems">
       <ui-table
         :items="innerItems.items"

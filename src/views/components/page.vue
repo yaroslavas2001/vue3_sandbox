@@ -4,17 +4,18 @@
       <div class="page-header__name">
         <h1>{{ name }}</h1>
       </div>
-      <slot name="title">
+      <!-- <slot name="title">
         <div class="page-header__bnts">
           <ui-button @click="onClick" tabindex="1" active>Добавить</ui-button>
         </div>
-      </slot>
+      </slot> -->
+      <button class="page__btn">Добавить</button>
     </div>
     <div class="page-content">
-      <div class="row align-items-center mx-0" v-if="!noFilter">
+      <div  v-if="!noFilter">
         <slot name="filter"></slot>
 
-        <div class="col my-2 page-content__panel">
+        <div class=" page-content__panel">
           <div class="ui-input">
             <input
               v-model="search"
@@ -193,7 +194,7 @@ export default class Page extends Vue {
 }
 </script>
 <style lang="less">
-@BaseColor: #23a4a2;
+@BaseColor: #D25338;
 .page {
   background: white;
   height: 100%;
@@ -206,46 +207,59 @@ export default class Page extends Vue {
     color: #262838;
     font-weight: 400;
   }
+  
   .page-header {
+   
+    font-size: 17px;
+    line-height: 20,71px;
+    color: #162147;
     display: flex;
-    border-bottom: 1px solid @BaseColor;
-    padding: 18px 26px;
-    font-size: 18px;
-    line-height: 22px;
-    color: #262838;
-    padding-bottom: 12px;
     align-items: center;
-    margin-bottom: 10px;
-    min-height: 69px;
-
-    .page-header__bnts {
-      margin-left: auto;
-      .ui-button {
-        height: 36px;
-        font-size: 1rem;
-      }
-    }
+    justify-content: space-between;
+    min-height: 21px;
+    border-bottom: 2px solid #F0F0F0;
+    padding: 14px 26px;
+    
+    // .page-header__bnts {
+    //   margin-left: auto;
+    //   .ui-button {
+    //     height: 36px;
+    //     font-size: 1rem;
+    //   }
+    // }
+  }
+  .page__btn{
+    background-color: @BaseColor;
+    width: 108px;
+    height: 36px;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    border: 0px;
   }
   .page-content {
-    margin: 30px;
+    margin: 19px 28px 55px 26px;
   }
   .page-content__panel {
-    margin-bottom: 10px;
-    background: #f8f8f8;
-    padding: 8px 16px;
+    // margin-bottom: 10px;
+    // background: #f8f8f8;
+    // padding: 8px 16px;
   }
   .ui-input {
     display: flex;
+    margin-bottom: 22px;
+    max-width: 535px;
     input {
-      background: #fcfcfc;
+      // background: #fcfcfc;
       font-family: ProximaNova;
-      border: 1px solid #d2d2d2;
+      border: 1px solid #CED4DE;
       box-sizing: border-box;
       padding: 5px 10px 5px 10px;
       font-size: 14px;
       width: 100%;
+      
       &::placeholder {
-        color: #787878;
+        // color: #787878;
       }
       &:focus {
         outline: none;
@@ -254,7 +268,7 @@ export default class Page extends Vue {
     }
     .ui-input__btn {
       background: @BaseColor;
-      min-width: 27px;
+      min-width: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
