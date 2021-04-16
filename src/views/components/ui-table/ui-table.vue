@@ -114,10 +114,12 @@ export default class UiTableComponent extends Vue {
 
 <style lang="less">
 @uiTablePadding: 18px;
-@uiTableHeaderColor: #262838;
-@uiTableHeaderBgColor: #e2e2e2;
-@uiTableBodyColor: #262838;
-@uiTableBodyBgColor: #f8f8f8;
+@uiTableHeaderColor: #343545; 
+//цвет текста
+@uiTableHeaderBgColor:  #E2E2E2;
+// фон
+@uiTableBodyColor: #343545;
+@uiTableBodyBgColor: #E2E2E2;
 .ui-table {
   // border: 2px solid lightgrey;
   // grid-template-areas: "nav content";
@@ -160,7 +162,7 @@ export default class UiTableComponent extends Vue {
     background-color: @uiTableBodyBgColor;
     color: @uiTableBodyColor;
     font-size: 14px;
-    min-height: 40px;
+    min-height: 36px;
     padding-top: 5px;
     padding-bottom: 5px;
     // border: 1px solid lightgray;

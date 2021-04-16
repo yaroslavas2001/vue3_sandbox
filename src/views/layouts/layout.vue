@@ -70,7 +70,7 @@ body {
   min-height: 100vh;
   .container-custom {
     flex-grow: 1;
-    background: #ececec;
+    background:  #DAD6D5;
     display: flex;
     flex-direction: column;
     overflow: hidden;

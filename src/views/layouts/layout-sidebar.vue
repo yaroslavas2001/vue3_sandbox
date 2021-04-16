@@ -1,13 +1,15 @@
 <template>
+<!-- боковое меню -->
   <div class="sidebar" :class="{ minimized: minimized }">
     <div class="logo">
       <div @click="toggleMinimize">
-        <img alt="" src="@assets/img/logo.svg" />
+        <img alt="" src="@assets/img/logo.png" />
       </div>
-      <div @click="goHome" class="log-text">поиск лекарств в Приднестровье</div>
-      <div class="logo-btn" @click.stop="toggleMinimize">
+      <div @click="goHome" class="log-text">ЕДИНАЯ РАСЧЕТНАЯ ПАЛАТА</div>
+      <!-- стрелка для скрытия -->
+      <!-- <div class="logo-btn" @click.stop="toggleMinimize">
         <img src="@assets/img/arrow-left.svg" alt="" srcset="" />
-      </div>
+      </div> -->
     </div>
     <nav>
       <router-link
@@ -15,21 +17,9 @@
         :exact-active-class="'active'"
         :to="{ name: 'catalog' }"
       >
-        <i class="icon icon-apteka-clipboard"></i>Каталог товаров</router-link
+        <i class="icon icon-apteka-clipboard"></i>Агенты / Пользователи</router-link
       >
-      <!-- <router-link
-        class="menu-item"
-        :exact-active-class="'active'"
-        :to="{ name: 'change-password' }"
-      >
-        <i class="icon icon-key"></i> Сменить пароль
-      </router-link> -->
     </nav>
-    <!-- discount-cards
-   slides
-   articles
-     promotions
-       -->
   </div>
 </template>
 <script lang="ts">
@@ -60,15 +50,15 @@ export default class LayoutSidebar extends Vue {
 
 <style lang="less" scoped>
 .sidebar {
-  background: #23a4a2;
+  background: #fff;
   max-width: 315px;
   width: 100%;
 
   transition: all 0.8s;
   .logo {
     height: 74px;
-    background: #0f4d4c;
-    border-right: 1px solid #176363;
+    background:  #1B2B3A;
+    border-right: 1px solid #31495F;
     display: flex;
     align-items: center;
     padding-left: 10px;
@@ -76,7 +66,11 @@ export default class LayoutSidebar extends Vue {
     cursor: pointer;
     .log-text {
       color: #fff;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 18px;
       min-width: 229px;
+      font-family: Roboto Slab;
       text-transform: uppercase;
       margin-left: 10px;
       overflow: hidden;
@@ -154,14 +148,16 @@ export default class LayoutSidebar extends Vue {
       }
       text-decoration: none;
       &:hover {
-        background-color: #1c716f;
+        background-color: #D25338;
         border-right: 3px solid white;
+        color: #1B2B3A;
         transition: color 0.15s ease, background-color 0.15s ease,
           border-color 0.15s ease, box-shadow 0.15s ease,
           -webkit-box-shadow 0.15s ease;
       }
       &.active {
-        background: #1c716f;
+        background: #F0F0F0;
+        color: #1B2B3A;
         border-right: 3px solid white;
       }
     }

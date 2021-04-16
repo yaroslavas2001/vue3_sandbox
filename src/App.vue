@@ -6,13 +6,7 @@
 
 <script lang="ts">
 import { Vue, Options } from "vue-class-component";
-// import Layout from '@layouts/layout.vue';
 
-// @Options({
-//   components: {
-//     Layout
-//   }
-// })
 export default class AppComponent extends Vue {
   created() {
   }

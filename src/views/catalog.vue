@@ -1,6 +1,6 @@
 <template>
   <page
-    name="Каталог товаров"
+    name="Агенты / Пользователи"
     :getDataFuncAsync="getDataFuncAsync"
     :filter="filter"
     @onAdd="onAdd"
@@ -12,29 +12,26 @@
       <!-- <div class="col">
         <div class="ui-input"><input /></div>
       </div> -->
-      <div class="col pl-0">        
-      </div>
-      <div class="col-auto">
-      </div>
+      <div class="col pl-0"></div>
+      <div class="col-auto"></div>
     </template>
+    
     <template #content="innerItems">
       <ui-table
         :items="innerItems.items"
-        template-columns="100px auto auto auto auto 50px"
+        template-columns="100px auto auto auto auto 36px 36px"
         style="overflow-x: auto"
       >
         <template #header>
           <ui-table-header-item> #</ui-table-header-item>
-          <ui-table-header-item>Название</ui-table-header-item>
-          <ui-table-header-item
-            :sort-name="'Producer'"
+          <ui-table-header-item>Логин</ui-table-header-item>
+          <ui-table-header-item>ФИО</ui-table-header-item>
+          <!-- :sort-name="'Producer'"
             default-sort="'asc'"
-            @onSort="onSort"
-            >Производитель</ui-table-header-item
-          >
-          <ui-table-header-item>Категория</ui-table-header-item>
-          <ui-table-header-item>Stores</ui-table-header-item>
-
+            @onSort="onSort" -->
+          <ui-table-header-item>Тип</ui-table-header-item>
+          <ui-table-header-item>Состояние</ui-table-header-item>
+          <ui-table-header-item />
           <ui-table-header-item />
         </template>
 
@@ -77,12 +74,10 @@ import { Options, Vue } from "vue-class-component";
 
 import Page from "@views/components/page.vue";
 
-
-
 import ImagePreviewModel from "./components/ui-crop-image/ImagePreviewModel";
 @Options({
   components: {
-    Page
+    Page,
   },
   // watch:{
   //   count:(value)=>{console.log("count=",value)},
@@ -99,19 +94,15 @@ export default class Сatalog extends Vue {
     ImageSrc: "",
   };
 
-
   filter = {};
   CityIds: number[] = [];
   StoreIds: number[] = [];
   cityId: number = null;
   innerItems: Object[] = [];
-onAdd() {
-  console.log('on Add');
-  
-}
-  init() {
-    
+  onAdd() {
+    console.log("on Add");
   }
+  init() {}
   onSort(sortName: string, sortType: string) {
     if (this.$refs.page) {
       (this.$refs.page as Page).sort(sortName, sortType);
@@ -130,8 +121,7 @@ onAdd() {
     (this.$refs.page as Page).refresh();
   }
   async getDataFuncAsync() {
-    console.log('async lalalal');
-    
+    console.log("async lalalal");
   }
 
   async onSave() {
