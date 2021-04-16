@@ -1,4 +1,4 @@
-# vue3_sandbox
+# medications
 
 ## Project setup
 ```
