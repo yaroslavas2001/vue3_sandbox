@@ -19,6 +19,13 @@
       >
         <i class="icon icon-apteka-clipboard"></i>Агенты / Пользователи</router-link
       >
+      <router-link
+        class="menu-item"
+        :exact-active-class="'active'"
+        :to="{ name: 'catalog' }"
+      >
+        <i class="icon icon-apteka-clipboard"></i>Объекты</router-link
+      >
     </nav>
   </div>
 </template>
