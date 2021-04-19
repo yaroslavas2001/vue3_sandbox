@@ -1,4 +1,5 @@
 <template>
+<Grid />
   <page
     name="Агенты / Пользователи"
     :getDataFuncAsync="getDataFuncAsync"
@@ -7,6 +8,7 @@
     ref="page"
     searchPlaceholder="Название товара..."
   >
+   
     <template #title></template>
     <template v-slot:filter>
       <!-- <div class="col">
@@ -15,7 +17,7 @@
       <!-- <div class="col pl-0"></div>
       <div class="col-auto"></div> -->
     </template>
-
+   
     <template #content="innerItems">
       <ui-table
         :items="innerItems.items"
@@ -73,11 +75,13 @@
 import { Options, Vue } from "vue-class-component";
 
 import Page from "@views/components/page.vue";
+import Grid from "@views/components/Grid.vue";
 
 import ImagePreviewModel from "./components/ui-crop-image/ImagePreviewModel";
 @Options({
   components: {
     Page,
+    Grid
   },
   // watch:{
   //   count:(value)=>{console.log("count=",value)},

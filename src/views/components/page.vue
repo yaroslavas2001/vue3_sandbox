@@ -11,6 +11,7 @@
       </slot> -->
       <button class="page__btn">Добавить</button>
     </div>
+    <Grid />
     <div class="page-content">
       <div  v-if="!noFilter">
         <slot name="filter"></slot>
@@ -74,7 +75,7 @@
 <script lang="ts">
 import { reactive, ref, provide } from "vue";
 import { Options, Vue } from "vue-class-component";
-
+import Grid from "@views/components/Grid.vue";
 
 
 import UiPaginationComponent from "./ui-table/ui-pagination.vue";
@@ -107,6 +108,9 @@ import UiPaginationComponent from "./ui-table/ui-pagination.vue";
     },
   },
   emits: ["onAdd"],
+components: {
+    Grid
+  },
 })
 export default class Page extends Vue {
   readonly searchPlaceholder: string = "Поиск";

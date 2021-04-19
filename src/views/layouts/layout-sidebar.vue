@@ -118,7 +118,6 @@ export default class LayoutSidebar extends Vue {
   background: #fff;
   max-width: 315px;
   width: 100%;
-
   transition: all 0.8s;
   .logo {
     height: 74px;
@@ -127,7 +126,7 @@ export default class LayoutSidebar extends Vue {
     display: flex;
     align-items: center;
     padding-left: 10px;
-
+    border-bottom: 1px solid #ba8931;
     cursor: pointer;
     .log-text {
       color: #fff;

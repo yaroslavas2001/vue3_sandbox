@@ -6,7 +6,7 @@
       <p class="text__administrator">Администратор</p>
     </div>
     <div class="header__update">
-      <div class="icon"><span class="icon-apteka-database"></span></div>
+      <div class="icon"><img src="@assets/img/bell.png" alt=""></div>
     </div>
     <div class="header__user-panel">
       <div class="header__user-photo" @click="changeProfile">
@@ -49,6 +49,7 @@ header {
   background: #1B2B3A;
   display: flex;
   color: #fff;
+  border-bottom:1px solid #BA8931;
   .header__text{
     margin-top: 19px;
     margin-left: 29px;
@@ -76,11 +77,11 @@ header {
       width: 41px;
       height: 41px;
       border-radius: 50%;
-      background: #0c3030;
+      background: #13212E;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #23a4a2;
+      color:  #13212E;
     }
   }
   .header__user-panel {
