@@ -13,14 +13,43 @@
     </div>
     <Filter @change="onFilterChanged" />
 
-    <Grid :usersToDisplay="usersToDisplay" />
+    <!-- <Grid :usersToDisplay="usersToDisplay" /> -->
+    <ui-table :items="usersToDisplay" templateColumns="1fr 1fr 1fr 100px">
+      <template #header>
+        <ui-table-header-item>0</ui-table-header-item>
+        <ui-table-header-item>2</ui-table-header-item>
+        <ui-table-header-item>3</ui-table-header-item>
+        <ui-table-header-item>4</ui-table-header-item>
+      </template>
+      <template #body="data">
+        <ui-table-body-item>{{data.item.login}}</ui-table-body-item>
+        <ui-table-body-item>{{data.item.name}}</ui-table-body-item>
+        <ui-table-body-item>{{data.item.name}}</ui-table-body-item>
+        <ui-table-body-item>{{data.item.name}}</ui-table-body-item>
+      </template>
+    </ui-table>
+  <content-block title="Список юзеров">
 
-    <Pagination
+  <content-table>
+    <template #filter>
+      <ui-input v-model="filter.search"></ui-input>
+    </template>
+    <template #default="data" :filter="filter" :getDataFunc="getDataFunc">
+      <ui-table-body-item>{{data.login}}</ui-table-body-item>
+      <ui-table-body-item>{{data.name}}</ui-table-body-item>
+      <ui-table-body-item>{{data.name}}</ui-table-body-item>
+      <ui-table-body-item>{{data.name}}</ui-table-body-item>
+    </template>
+  </content-table>
+  </content-block>
+    <!-- <Pagination
       :currentPage="currentPage"
       :pageSize="pageSize"
       :totalCount="totalPageCount"
       @pageClick="pageClick"
-    />
+    /> -->
+    <ui-pagination :size="pageSize"
+      :count="totalCount" @onChange="onPaginationChanged"/>
     <!-- <div class="page-content">
       <div  v-if="!noFilter">
         <slot name="filter"></slot>
@@ -109,7 +138,7 @@ boolean: boolean;
       type: String,
       default: "Название страницы",
     },
-    getDataFuncAsync: { type: Function, requared: true },
+    getDataFuncAsync: { type: Function, required: true },
   },
   watch: {
     filter(value) {
@@ -149,7 +178,13 @@ export default class Page extends Vue {
     let to = from + this.pageSize;
     return this.filteredUsers.slice(from, to);
   }
-
+  // {
+  //   Coutn: 100110,
+  //   Items: [1,2,3,32,4,124,]
+  // }
+  get totalCount(): number {
+    return this.filteredUsers.length;
+  }
   get totalPageCount(): number {
     return Math.ceil(this.filteredUsers.length / this.pageSize);
   }
@@ -264,12 +299,12 @@ export default class Page extends Vue {
     this.refresh();
   }
 
-  // onPaginationChanged(currentPage: number) {
-  //   this.currentPage = currentPage;
-  //   // this.innerFilter.Pagination.Skip =
-  //   //   (currentPage - 1) * this.innerFilter.Pagination.Take;
-  //   this.refresh();
-  // }
+  onPaginationChanged(currentPage: number) {
+    this.currentPage = currentPage;
+    // this.innerFilter.Pagination.Skip =
+    //   (currentPage - 1) * this.innerFilter.Pagination.Take;
+    this.refresh();
+  }
 
   // onSearch() {
   //   // this.innerFilter.Pagination.Skip = 0;

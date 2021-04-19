@@ -1,5 +1,12 @@
 <template>
-<h1>Объекты</h1>
+  <page
+    name="Агенты / Пользователи"
+    :getDataFuncAsync="getDataFuncAsync"
+    :filter="filter"
+    @onAdd="onAdd"
+    ref="page"
+    searchPlaceholder="Название товара..."
+  ></page>
 
 </template>
 <script lang="ts">
