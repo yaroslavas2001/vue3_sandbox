@@ -1,5 +1,4 @@
 <template>
-<Grid />
   <page
     name="Агенты / Пользователи"
     :getDataFuncAsync="getDataFuncAsync"
@@ -9,16 +8,16 @@
     searchPlaceholder="Название товара..."
   >
    
-    <template #title></template>
-    <template v-slot:filter>
+    <!-- <template #title></template>
+    <template v-slot:filter> -->
       <!-- <div class="col">
         <div class="ui-input"><input /></div>
       </div> -->
       <!-- <div class="col pl-0"></div>
       <div class="col-auto"></div> -->
-    </template>
+    <!-- </template> -->
    
-    <template #content="innerItems">
+    <!-- <template #content="innerItems">
       <ui-table
         :items="innerItems.items"
         template-columns="100px auto auto auto auto 36px 36px"
@@ -27,11 +26,11 @@
         <template #header>
           <ui-table-header-item> #</ui-table-header-item>
           <ui-table-header-item>Логин</ui-table-header-item>
-          <ui-table-header-item>ФИО</ui-table-header-item>
+          <ui-table-header-item>ФИО</ui-table-header-item> -->
           <!-- :sort-name="'Producer'"
             default-sort="'asc'"
             @onSort="onSort" -->
-          <ui-table-header-item>Тип</ui-table-header-item>
+          <!-- <ui-table-header-item>Тип</ui-table-header-item>
           <ui-table-header-item>Состояние</ui-table-header-item>
           <ui-table-header-item />
           <ui-table-header-item />
@@ -58,16 +57,16 @@
               class="icon-apteka-pencil pointer"
               @click="onEdit(data.item)"
             ></div>
-          </ui-table-body-item>
+          </ui-table-body-item> -->
           <!-- <ui-table-body-item>
             <div
               class="icon-apteka-delete pointer"
               @click="onDelete(data.item)"
             ></div>
           </ui-table-body-item> -->
-        </template>
+        <!-- </template>
       </ui-table>
-    </template>
+    </template> -->
   </page>
 </template>
 
@@ -75,13 +74,11 @@
 import { Options, Vue } from "vue-class-component";
 
 import Page from "@views/components/page.vue";
-import Grid from "@views/components/Grid.vue";
 
 import ImagePreviewModel from "./components/ui-crop-image/ImagePreviewModel";
 @Options({
   components: {
     Page,
-    Grid
   },
   // watch:{
   //   count:(value)=>{console.log("count=",value)},

@@ -11,8 +11,17 @@
       </slot> -->
       <button class="page__btn">Добавить</button>
     </div>
-    <Grid />
-    <div class="page-content">
+    <Filter @change="onFilterChanged" />
+
+    <Grid :usersToDisplay="usersToDisplay" />
+
+    <Pagination
+      :currentPage="currentPage"
+      :pageSize="pageSize"
+      :totalCount="totalPageCount"
+      @pageClick="pageClick"
+    />
+    <!-- <div class="page-content">
       <div  v-if="!noFilter">
         <slot name="filter"></slot>
 
@@ -66,7 +75,7 @@
           Нет данных
         </div>
       </div>
-    </div>
+    </div> -->
 
     <slot name="modal-window"> </slot>
   </div>
@@ -76,10 +85,19 @@
 import { reactive, ref, provide } from "vue";
 import { Options, Vue } from "vue-class-component";
 import Grid from "@views/components/Grid.vue";
+import Filter from "@views/components/Filter.vue";
+import Pagination from "@views/components/Pagination.vue";
 
-
+import * as faker from "faker";
+import moment from "moment";
 import UiPaginationComponent from "./ui-table/ui-pagination.vue";
 
+interface IUser {
+  name: string;
+  data: Date;
+  age: number;
+  avatar: string;
+}
 @Options<Page>({
   props: {
     searchPlaceholder: { default: "Поиск", type: String },
@@ -92,15 +110,6 @@ import UiPaginationComponent from "./ui-table/ui-pagination.vue";
       default: "Название страницы",
     },
     getDataFuncAsync: { type: Function, requared: true },
-    // filter: {
-    //   required: true,
-    //   type: FilterRequest,
-    //   default: new FilterRequest({
-    //     Pagination: { Skip: 0, Take: 10 },
-    //     Search: [],
-    //     Sort: { FieldName: "", Desc: false },
-    //   }),
-    // },
   },
   watch: {
     filter(value) {
@@ -108,11 +117,86 @@ import UiPaginationComponent from "./ui-table/ui-pagination.vue";
     },
   },
   emits: ["onAdd"],
-components: {
-    Grid
+  components: {
+    Grid,
+    Filter,
+    Pagination,
   },
 })
 export default class Page extends Vue {
+  created() {
+    this.initData();
+  }
+  allUsers: IUser[] = [];
+  filteredUsers: IUser[] = [];
+  currentPage = 1;
+  pageSize = 10;
+  initData() {
+    for (var i = 0; i < 30; i++) {
+      let dist = {
+        name: faker.name.firstName(),
+        data: faker.date.past(),
+        age: Math.floor(Math.random() * 101),
+        avatar: faker.image.avatar(),
+      };
+      this.allUsers.push(dist);
+    }
+    this.filteredUsers = this.allUsers.slice();
+  }
+
+  get usersToDisplay(): IUser[] {
+    let from = (this.currentPage - 1) * this.pageSize;
+    let to = from + this.pageSize;
+    return this.filteredUsers.slice(from, to);
+  }
+
+  get totalPageCount(): number {
+    return Math.ceil(this.filteredUsers.length / this.pageSize);
+  }
+  // получает номер страницы на которую нажали
+  pageClick(page: Number) {
+    this.currentPage = Number(page);
+  }
+  formatDate(date: Date) {
+    return moment(date).format("DD.MM.YYYY");
+  }
+  // ловля события
+  onFilterChanged(data: string) {
+    const s = data.toLowerCase();
+    this.filteredUsers = this.allUsers.filter(
+      (x) =>
+        x.name.toLowerCase().includes(s) ||
+        x.age.toString().includes(s) ||
+        this.formatDate(x.data).includes(s)
+    );
+    if (this.currentPage > this.totalPageCount) {
+      this.currentPage = this.totalPageCount;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // если закоментировать то будет ошибка
   readonly searchPlaceholder: string = "Поиск";
   readonly name: string = "Название страницы";
   readonly noApi: boolean = false;
@@ -120,10 +204,9 @@ export default class Page extends Vue {
   readonly noPagination: boolean = false;
   readonly defaultSearchField = "Name";
 
-
   isLoading = false;
   totalItems = 0;
-  currentPage = 1;
+  // currentPage = 1;
   innerItems: any[] = [];
 
   hasFilter = false;
@@ -136,19 +219,18 @@ export default class Page extends Vue {
     this.$emit("onAdd");
   }
 
-  async created() {
-    if (this.noApi) {
-      return;
-    }
-    await this.refresh();
-  }
+  // async created() {
+  //   if (this.noApi) {
+  //     return;
+  //   }
+  //   await this.refresh();
+  // }
 
   mounted() {
     this.hasFilter = this.$slots.filter != null;
   }
 
-  addSearch(item: any) {
-  }
+  addSearch(item: any) {}
 
   sort(sortName: string, sortType: string) {
     // if (sortName != "" && this.innerFilter.Sort == null) {
@@ -161,14 +243,13 @@ export default class Page extends Vue {
     this.refresh();
   }
 
-  async refresh() {
-  }
+  async refresh() {}
 
-  get pageSize(): number {
-    return 10;
-    // const x = this.innerFilter.Pagination.Take;
-    // return x;
-  }
+  // get pageSize(): number {
+  //   return 10;
+  //   // const x = this.innerFilter.Pagination.Take;
+  //   // return x;
+  // }
 
   resetPagination() {
     // this.innerFilter.Pagination.Skip = 0;
@@ -181,27 +262,26 @@ export default class Page extends Vue {
     this.refresh();
   }
 
+  // onPaginationChanged(currentPage: number) {
+  //   this.currentPage = currentPage;
+  //   // this.innerFilter.Pagination.Skip =
+  //   //   (currentPage - 1) * this.innerFilter.Pagination.Take;
+  //   this.refresh();
+  // }
 
-  onPaginationChanged(currentPage: number) {
-    this.currentPage = currentPage;
-    // this.innerFilter.Pagination.Skip =
-    //   (currentPage - 1) * this.innerFilter.Pagination.Take;
-    this.refresh();
-  }
-
-  onSearch() {
-
-    // this.innerFilter.Pagination.Skip = 0;
-    this.currentPage = 1;
-    this.refresh();
-  }
+  // onSearch() {
+  //   // this.innerFilter.Pagination.Skip = 0;
+  //   this.currentPage = 1;
+  //   this.refresh();
+  // }
 }
 </script>
 <style lang="less">
-@BaseColor: #D25338;
+@BaseColor: #d25338;
 .page {
   background: white;
   height: 100%;
+ padding: 0 26px;
   label {
     font-size: 13px;
   }
@@ -211,19 +291,18 @@ export default class Page extends Vue {
     color: #262838;
     font-weight: 400;
   }
-  
+
   .page-header {
-   
     font-size: 17px;
-    line-height: 20,71px;
+    line-height: 20, 71px;
     color: #162147;
     display: flex;
     align-items: center;
     justify-content: space-between;
     min-height: 21px;
-    border-bottom: 2px solid #F0F0F0;
-    padding: 14px 26px;
-    
+    border-bottom: 2px solid #f0f0f0;
+    padding: 14px 0px;
+
     // .page-header__bnts {
     //   margin-left: auto;
     //   .ui-button {
@@ -232,13 +311,13 @@ export default class Page extends Vue {
     //   }
     // }
   }
-  .page__btn{
+  .page__btn {
     background-color: @BaseColor;
     width: 108px;
     height: 36px;
     font-size: 14px;
     line-height: 17px;
-    color: #FFFFFF;
+    color: #ffffff;
     border: 0px;
   }
   .page-content {
@@ -256,12 +335,12 @@ export default class Page extends Vue {
     input {
       // background: #fcfcfc;
       font-family: ProximaNova;
-      border: 1px solid #CED4DE;
+      border: 1px solid #ced4de;
       box-sizing: border-box;
       padding: 5px 10px 5px 10px;
       font-size: 14px;
       width: 100%;
-      
+
       &::placeholder {
         // color: #787878;
       }
