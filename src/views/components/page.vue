@@ -166,7 +166,9 @@ export default class Page extends Vue {
     this.filteredUsers = this.allUsers.filter(
       (x) =>
         x.name.toLowerCase().includes(s) ||
-        x.login.toString().includes(s) 
+        x.login.toLowerCase().includes(s) ||
+         x.type.toLowerCase().includes(s) ||
+          x.boolean.toString().includes(s)
         // this.formatDate(x.type).includes(s)
     );
     if (this.currentPage > this.totalPageCount) {
