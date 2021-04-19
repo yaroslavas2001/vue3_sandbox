@@ -1,5 +1,5 @@
 <template>
-<!-- боковое меню -->
+  <!-- боковое меню -->
   <div class="sidebar" :class="{ minimized: minimized }">
     <div class="logo">
       <div @click="toggleMinimize">
@@ -17,14 +17,72 @@
         :exact-active-class="'active'"
         :to="{ name: 'catalog' }"
       >
-        <i class="icon icon-apteka-clipboard"></i>Агенты / Пользователи</router-link
+        <i class="icon icon-apteka-clipboard"></i>Агенты /
+        Пользователи</router-link
       >
       <router-link
         class="menu-item"
         :exact-active-class="'active'"
-        :to="{ name: 'catalog' }"
+        :to="{ name: 'objects' }"
       >
         <i class="icon icon-apteka-clipboard"></i>Объекты</router-link
+      >
+      <router-link
+        class="menu-item"
+        :exact-active-class="'active'"
+        :to="{ name: 'meters_data' }"
+      >
+        <i class="icon icon-apteka-clipboard"></i>Показания
+        счетчиков</router-link
+      >
+      <router-link
+        class="menu-item"
+        :exact-active-class="'active'"
+        :to="{ name: 'bills' }"
+      >
+        <i class="icon icon-apteka-clipboard"></i>Счета</router-link
+      >
+      <router-link
+        class="menu-item"
+        :exact-active-class="'active'"
+        :to="{ name: 'suppliers' }"
+      >
+        <i class="icon icon-apteka-clipboard"></i>Поставщики</router-link
+      >
+      <router-link
+        class="menu-item"
+        :exact-active-class="'active'"
+        :to="{ name: 'payments' }"
+      >
+        <i class="icon icon-apteka-clipboard"></i>Платежи</router-link
+      >
+      <router-link
+        class="menu-item"
+        :exact-active-class="'active'"
+        :to="{ name: 'documentation' }"
+      >
+        <i class="icon icon-apteka-clipboard"></i>Документы</router-link
+      >
+      <router-link
+        class="menu-item"
+        :exact-active-class="'active'"
+        :to="{ name: 'reports' }"
+      >
+        <i class="icon icon-apteka-clipboard"></i>Отчеты</router-link
+      >
+      <router-link
+        class="menu-item"
+        :exact-active-class="'active'"
+        :to="{ name: 'reference_books' }"
+      >
+        <i class="icon icon-apteka-clipboard"></i>Справочники</router-link
+      >
+      <router-link
+        class="menu-item"
+        :exact-active-class="'active'"
+        :to="{ name: 'customization' }"
+      >
+        <i class="icon icon-apteka-clipboard"></i>Настройки</router-link
       >
     </nav>
   </div>
@@ -64,8 +122,8 @@ export default class LayoutSidebar extends Vue {
   transition: all 0.8s;
   .logo {
     height: 74px;
-    background:  #1B2B3A;
-    border-right: 1px solid #31495F;
+    background: #1b2b3a;
+    border-right: 1px solid #31495f;
     display: flex;
     align-items: center;
     padding-left: 10px;
@@ -143,7 +201,7 @@ export default class LayoutSidebar extends Vue {
       // text-indent: 15px;
       padding: 10px 20px;
       height: 41px;
-      color: #fff;
+      color: #1b2b3a;
       transition: color 0.15s ease, background-color 0.15s ease,
         border-color 0.15s ease, box-shadow 0.15s ease,
         -webkit-box-shadow 0.15s ease;
@@ -155,17 +213,20 @@ export default class LayoutSidebar extends Vue {
       }
       text-decoration: none;
       &:hover {
-        background-color: #D25338;
-        border-right: 3px solid white;
-        color: #1B2B3A;
+        background-color: #d25338;
+        border-right: 3px solid #d25338;
+        color: #1b2b3a;
         transition: color 0.15s ease, background-color 0.15s ease,
           border-color 0.15s ease, box-shadow 0.15s ease,
           -webkit-box-shadow 0.15s ease;
       }
       &.active {
-        background: #F0F0F0;
-        color: #1B2B3A;
-        border-right: 3px solid white;
+        background: #f0f0f0;
+        color: #1b2b3a;
+        border-right: 3px solid #d25338;
+        .icon {
+          color: #d25338;
+        }
       }
     }
     .sub {

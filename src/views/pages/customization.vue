@@ -1,5 +1,5 @@
 <template>
-<h1>Показания счетчиков</h1>
+<h1>Настройки</h1>
 <h2>bdbdbddfbfgbg</h2>
 </template>
 <script lang="ts">
