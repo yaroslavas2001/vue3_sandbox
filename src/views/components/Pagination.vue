@@ -41,14 +41,13 @@ export default class Pagination extends Vue {
 <style lang="less">
 .pagination {
   display: flex;
-margin: 26px;
-justify-content: flex-end;
+  justify-content: flex-end;
+  margin-top: 15px;
 }
 .pages {
   background: #e2e2e2;
   padding: 10px;
-
-  margin-right: 5px;
+  margin-left: 5px;
   cursor: pointer;
   &.active {
     background-color: #d25338;

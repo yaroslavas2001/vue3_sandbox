@@ -11,15 +11,15 @@
   </div>
   <div class="row" v-for="item in Display" :key="item">
     <div class="cell">#</div>
+    <div class="cell">{{ item.login }}</div>
     <div class="cell">{{ item.name }}</div>
-    <div class="cell">{{ item.name }}</div>
-    <div class="cell">{{ item.age }}</div>
-    <div class="cell">{{ item.name }}</div>
+    <div class="cell">{{ item.type }}</div>
+    <div class="cell">{{ item.boolean }}</div>
     <!-- <div class="cell_avatar">
       <img :src="item.avatar" alt="" />
     </div> -->
-    <button><img src="@assets/img/red.png" alt=""></button>
-    <button><img src="@assets/img/basket.png" alt=""></button>
+    <button class="cell__btn"><img src="@assets/img/red.png" alt=""></button>
+    <button class="cell__btn"><img src="@assets/img/basket.png" alt=""></button>
   </div>
   </div>
 </template>
@@ -27,10 +27,10 @@
 import moment from "moment";
 import { Options, Prop, Vue } from "vue-property-decorator";
 interface IUser {
+  login: string;
   name: string;
-  data: Date;
-  age: number;
-  avatar: string;
+type: string;
+boolean: boolean;
 }
 @Options({
   name: "grid",
@@ -66,5 +66,8 @@ export default class Grid extends Vue {
   padding: 9px 0px 9px 22px;
   height: 37px;
   border: 1px #ffffff solid;
+}
+.cell__btn{
+  border: 1px solid #fff;
 }
 </style>

@@ -93,10 +93,10 @@ import moment from "moment";
 import UiPaginationComponent from "./ui-table/ui-pagination.vue";
 
 interface IUser {
+  login: string;
   name: string;
-  data: Date;
-  age: number;
-  avatar: string;
+type: string;
+boolean: boolean;
 }
 @Options<Page>({
   props: {
@@ -134,10 +134,10 @@ export default class Page extends Vue {
   initData() {
     for (var i = 0; i < 30; i++) {
       let dist = {
+        login: faker.name.lastName(),
         name: faker.name.firstName(),
-        data: faker.date.past(),
-        age: Math.floor(Math.random() * 101),
-        avatar: faker.image.avatar(),
+        type: faker.vehicle.type(),
+        boolean: faker.random.boolean(),
       };
       this.allUsers.push(dist);
     }
@@ -166,8 +166,8 @@ export default class Page extends Vue {
     this.filteredUsers = this.allUsers.filter(
       (x) =>
         x.name.toLowerCase().includes(s) ||
-        x.age.toString().includes(s) ||
-        this.formatDate(x.data).includes(s)
+        x.login.toString().includes(s) 
+        // this.formatDate(x.type).includes(s)
     );
     if (this.currentPage > this.totalPageCount) {
       this.currentPage = this.totalPageCount;
