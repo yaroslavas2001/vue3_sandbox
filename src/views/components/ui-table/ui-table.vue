@@ -27,8 +27,6 @@
 import { Options, Vue } from "vue-class-component";
 import UiTableHeaderItem from "@views/components/ui-table/ui-table-header-item.vue";
 import UiTableBodyItem from "@views/components/ui-table/ui-table-body-item.vue";
-import { warn } from "vue";
-import api from "@/api";
 @Options<UiTableComponent>({
   components: { UiTableHeaderItem, UiTableBodyItem },
   props: {
@@ -88,6 +86,7 @@ export default class UiTableComponent extends Vue {
       "grid-template-columns": this.templateColumns,
     };
   }
+
   onCangeTemplateColumns() {
     this.styleObject == new Object();
     this.styleObject = {
@@ -114,19 +113,20 @@ export default class UiTableComponent extends Vue {
 
 <style lang="less">
 @uiTablePadding: 18px;
-@uiTableHeaderColor: #343545; 
+@uiTableHeaderColor: #343545;
 //цвет текста
-@uiTableHeaderBgColor:  #E2E2E2;
+@uiTableHeaderBgColor: #e2e2e2;
 // фон
 @uiTableBodyColor: #343545;
-@uiTableBodyBgColor: #E2E2E2;
+@uiTableBodyBgColor: #e2e2e2;
 .ui-table {
   // border: 2px solid lightgrey;
   // grid-template-areas: "nav content";
   position: relative;
   overflow-x: auto;
   width: 100%;
-
+  margin-top: 20px;
+  margin-bottom: 10px;
   .noitem {
     text-align: center;
     padding: 2rem 0;

@@ -16,8 +16,6 @@
 import { Options, Vue, setup } from "vue-class-component";
 import LayoutHeader from "@layouts/layout-header.vue";
 import LayoutSidebar from "@layouts/layout-sidebar.vue";
-import UiDialog from "@/plugins/dialog/ui-dialog.vue";
-import api from "@/api";
 import { provide, reactive } from "vue";
 @Options({
   components: {

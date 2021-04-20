@@ -15,7 +15,7 @@
       <router-link
         class="menu-item"
         :exact-active-class="'active'"
-        :to="{ name: 'catalog' }"
+        :to="{ name: 'agents' }"
       >
         <i class="icon icon-apteka-clipboard"></i>Агенты /
         Пользователи</router-link
