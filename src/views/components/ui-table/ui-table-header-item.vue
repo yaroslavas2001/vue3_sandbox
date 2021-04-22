@@ -51,7 +51,7 @@ export default class UiTableHeaderItemComponent extends Vue {
     if (this.sortType === null) this.sortType = 0;
     else if (this.sortType === 0) this.sortType = 1;
     else if (this.sortType === 1) this.sortType = 0;
-
+  
     this.$emit("onSort", this.sortName, this.sortType);
   }
 }

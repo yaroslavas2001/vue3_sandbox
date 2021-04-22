@@ -3,18 +3,27 @@
     <!-- КНОПКА ОРАНЖЕВАЯ ДЛЯ ШАБЛОНА СТРАНИЦЫ -->
     <template #btn><button class="page__btn">Добавить</button> </template>
 
+    <template #input>
+      <input
+        class="ui-table-input input"
+        v-model="search"
+        placeholder="Поиск.."
+      />
+      <button class="ui-table-input btn" @click="onFilterChanged()">
+        <img src="@assets/img/search.png" alt="" />
+      </button>
+    </template>
+
+    <!-- <ui-table-input @onFilterChanged="onFilterChanged"></ui-table-input> -->
+
     <ui-table
       :items="usersToDisplay"
       templateColumns="100px 1fr 1fr 1fr 1fr min-content min-content"
     >
-      <template #header >
-        <ui-table-header-item>#</ui-table-header-item>
-        <ui-table-header-item>Логин</ui-table-header-item>
-        <ui-table-header-item>ФИО</ui-table-header-item>
-        <ui-table-header-item>Тип</ui-table-header-item>
-        <ui-table-header-item>Состояние</ui-table-header-item>
-        <ui-table-header-item></ui-table-header-item>
-        <ui-table-header-item></ui-table-header-item>
+      <template #header>
+        <ui-table-header-item v-for="item in headerList" :key="item">{{
+          item
+        }}</ui-table-header-item>
       </template>
       <template #body="data">
         <ui-table-body-item>#</ui-table-body-item>
@@ -31,7 +40,6 @@
       </template>
     </ui-table>
     <!-- <content-block title="Список юзеров"> 
-
   <content-table>
     <template #filter>
       <ui-input v-model="filter.search"></ui-input>
@@ -41,7 +49,6 @@
       <ui-table-body-item>{{data.name}}</ui-table-body-item>
       <ui-table-body-item>{{data.name}}</ui-table-body-item>
       <ui-table-body-item>{{data.name}}</ui-table-body-item>
-      
     </template>
   </content-table>
   </content-block> -->
@@ -56,9 +63,10 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import PageTemplate from "@/views/components/page-template.vue";
+import UiTableInput from "@/views/components/ui-table/ui-table-input.vue";
 import * as faker from "faker";
 import moment from "moment";
-
+// import UiTableComponent from "@views/components/ui-table/ui-table.vue";
 interface IUser {
   login: string;
   name: string;
@@ -69,12 +77,16 @@ interface IUser {
   props: {},
   components: {
     PageTemplate,
+    UiTableInput,
+    // UiTableComponent
   },
 })
 export default class agents extends Vue {
   created() {
     this.initData();
   }
+  headerList = ["#", "Логин", "ФИО", "Тип", "Состояние", "", ""];
+  search = "";
   allUsers: IUser[] = [];
   filteredUsers: IUser[] = [];
   currentPage = 1;
@@ -108,8 +120,9 @@ export default class agents extends Vue {
     return moment(date).format("DD.MM.YYYY");
   }
   // ловля события
-  onFilterChanged(data: string) {
-    const s = data.toLowerCase();
+  onFilterChanged() {
+    //data для ui-table-input
+    const s = this.search.toLowerCase();
     this.filteredUsers = this.allUsers.filter(
       (x) =>
         x.name.toLowerCase().includes(s) ||
@@ -121,10 +134,8 @@ export default class agents extends Vue {
   }
   onPaginationChanged(data: number) {
     this.currentPage = data;
-    // console.log(data);
   }
 }
 </script>
 <style scoped>
-
 </style>

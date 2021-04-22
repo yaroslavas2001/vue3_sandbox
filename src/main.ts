@@ -21,7 +21,7 @@ import ControlValidatorGroup from "@views/components/control-validator-group.vue
 // import BsContainer from "@views/components/bootstrap/bs-container.vue";
 //plagins
 import ErrorHandler from "./plugins/errorHandler";
-
+import UiTableInput from "@views/components/ui-table/ui-table-input.vue";
 
 // import StorageManipulatorPlugin from "@/plugins/storageManipulator";
 // import { suppressDeprecationWarnings } from "moment";
@@ -44,6 +44,7 @@ app.component("ui-table-header-item", UiTableHeaderItem);
 app.component("ui-pagination", UiPagination);
 app.component("ui-table-body-item", UiTableBodyItem);
 app.component("ui-table", UiTable);
+app.component("ui-table-input", UiTableInput);
 app.component("ui-button", UiButton);
 app.component("ui-checkbox", UiCheckbox);
 app.component("ui-loading", UiLoading);

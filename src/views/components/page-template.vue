@@ -6,6 +6,10 @@
       </div>
       <slot name="btn"></slot>
     </div>
+    <!-- <filter :filter="filter" @onChangeFlite="onChangeFlite">
+     <slot name="input">
+      </slot>
+    </filter> -->
     <slot></slot>
   </div>
 </template>
@@ -19,7 +23,11 @@ import { Options, Vue } from "vue-class-component";
     },
   },
 })
-export default class PageTemplate extends Vue {}
+export default class PageTemplate extends Vue {
+ onChangeFlite(filter: Object) {
+
+  }
+}
 </script>
 <style lang="less">
 @BaseColor: #d25338;
@@ -45,6 +53,17 @@ export default class PageTemplate extends Vue {}
     font-size: 14px;
     line-height: 17px;
     color: #ffffff;
+    border: 0px;
+  }
+  .input{
+      height: 35px;
+    margin-top: 19px;
+    min-width: 500px;
+  }
+  .btn{
+        background-color:#D25338;
+    height: 36px;
+    width: 36px;
     border: 0px;
   }
 }

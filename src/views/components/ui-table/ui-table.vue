@@ -1,8 +1,9 @@
 <template>
+
   <div class="ui-table">
+      <slot name="input"></slot>
     <div v-bind:style="styleObject" @changeCol="changeCol">
       <slot name="header"></slot>
-
       <template
         v-for="(item, index) in items"
         @changeCol="changeCol"
@@ -18,7 +19,7 @@
           <slot name="inner" :item="item"></slot>
         </div>
       </template>
-      <slot name="footer"></slot>
+      <!-- <slot name="footer"></slot> -->
     </div>
   </div>
 </template>
@@ -27,8 +28,9 @@
 import { Options, Vue } from "vue-class-component";
 import UiTableHeaderItem from "@views/components/ui-table/ui-table-header-item.vue";
 import UiTableBodyItem from "@views/components/ui-table/ui-table-body-item.vue";
+import UiTableInput from "@views/components/ui-table/ui-table-input.vue";
 @Options<UiTableComponent>({
-  components: { UiTableHeaderItem, UiTableBodyItem },
+  components: { UiTableHeaderItem, UiTableBodyItem ,UiTableInput},
   props: {
     items: { type: Array, default: [] },
     columnGap: { default: 1, type: Number },
@@ -50,14 +52,6 @@ export default class UiTableComponent extends Vue {
   readonly templateColumns = "";
   readonly selectLine = 0;
   readonly key = "Id";
-  // @Prop({ type: Array })                          Items: Object[];
-  // @Prop({ default: 2, type: Number }) columnGap: number;
-  // @Prop({ default: 2, type: Number }) rowGap: number;
-  // @Prop({ default: "", type: String }) templateColumns: string;
-  // @Prop({ type: Number, default: 0 }) selectLine: number;
-  // @Prop({ default: true }) light: boolean;
-  // @Prop({ default: false }) dark: boolean;
-  // @Prop({ default: false }) w100: boolean;
 
   selLine = this.selectLine;
   getKey(item: Object): string {
