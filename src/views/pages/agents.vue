@@ -2,19 +2,10 @@
   <page-template name="Агенты / Пользователи" ref="Page-template">
     <!-- КНОПКА ОРАНЖЕВАЯ ДЛЯ ШАБЛОНА СТРАНИЦЫ -->
     <template #btn><button class="page__btn">Добавить</button> </template>
-
-    <template #input>
-      <input
-        class="ui-table-input input"
-        v-model="search"
-        placeholder="Поиск.."
-      />
-      <button class="ui-table-input btn" @click="onFilterChanged()">
-        <img src="@assets/img/search.png" alt="" />
-      </button>
-    </template>
-
-    <!-- <ui-table-input @onFilterChanged="onFilterChanged"></ui-table-input> -->
+    
+    <template #input
+      ><ui-table-input @onFilterChanged="onFilterChanged"></ui-table-input
+    ></template>
 
     <ui-table
       :items="usersToDisplay"
@@ -120,9 +111,9 @@ export default class agents extends Vue {
     return moment(date).format("DD.MM.YYYY");
   }
   // ловля события
-  onFilterChanged() {
+  onFilterChanged(data: string) {
     //data для ui-table-input
-    const s = this.search.toLowerCase();
+    const s = data.toLowerCase();
     this.filteredUsers = this.allUsers.filter(
       (x) =>
         x.name.toLowerCase().includes(s) ||

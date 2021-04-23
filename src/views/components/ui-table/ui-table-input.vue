@@ -11,7 +11,6 @@ import { Options, Prop, Vue, Ref } from "vue-property-decorator";
 export default class UiTableInput extends Vue {
   search = "";
   onFilterChanged() {
-      console.log(this.search)
     this.$emit("onFilterChanged", this.search);
   }
 }
