@@ -1,6 +1,6 @@
 <template>
-   <input class="ui-table-input input" v-model="search" placeholder="Поиск.."/>
-  <button class="ui-table-input btn"  @click="onFilterChanged()"><img src="@assets/img/search.png" alt=""></button>
+   <input class="input" v-model="search" placeholder="Поиск.."/>
+  <button class="btn"  @click="onFilterChanged()"><img src="@assets/img/search.png" alt=""></button>
 </template>
 <script lang="ts">
 import { Options, Prop, Vue, Ref } from "vue-property-decorator";
@@ -23,9 +23,7 @@ export default class UiTableInput extends Vue {
     border: 0px;
 }
 .input{
-    height: 35px;
-    margin-top: 19px;
-    margin-bottom: 22px;
-    min-width: 500px;
+    height: 36px;
+    min-width: 463px;
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
-<h1>Отчеты</h1>
+<page-template name="Отчеты" ref="Page-template">
 
+    
+</page-template>
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";

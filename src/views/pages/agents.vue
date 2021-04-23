@@ -2,10 +2,14 @@
   <page-template name="Агенты / Пользователи" ref="Page-template">
     <!-- КНОПКА ОРАНЖЕВАЯ ДЛЯ ШАБЛОНА СТРАНИЦЫ -->
     <template #btn><button class="page__btn">Добавить</button> </template>
-    
+
+
     <template #input
       ><ui-table-input @onFilterChanged="onFilterChanged"></ui-table-input
     ></template>
+    <template #select> <ui-select v-model="a1" :items="selectListAll" /></template>
+    <template #select1> <ui-select :items="selectListActive" /></template>
+
 
     <ui-table
       :items="usersToDisplay"
@@ -53,7 +57,6 @@
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import PageTemplate from "@/views/components/page-template.vue";
 import UiTableInput from "@/views/components/ui-table/ui-table-input.vue";
 import * as faker from "faker";
 import moment from "moment";
@@ -65,18 +68,30 @@ interface IUser {
   boolean: boolean;
 }
 @Options({
-  props: {},
   components: {
-    PageTemplate,
     UiTableInput,
     // UiTableComponent
   },
 })
-export default class agents extends Vue {
+export default class AgentsPageComponent extends Vue {
   created() {
     this.initData();
   }
   headerList = ["#", "Логин", "ФИО", "Тип", "Состояние", "", ""];
+  selectListAll =["Все","Почти все","Не все"]
+  selectListActive = ["Активный", "Не активный"]
+  // selectListAll = [
+  //   {id: 1, text: 'Все'},
+  //   {id: 2, text: 'Не все'},
+  //   {id: 3, text: 'Почти все'},
+  //   ];
+  // a1: string = null; // 'Активный';
+  // lala(data: string) {
+  //   console.log('lala: ', data);
+  //   this.a1 = data;
+  // }
+  // selectListActive = ["Активный", "Не активный"];
+  // a2: string = null;
   search = "";
   allUsers: IUser[] = [];
   filteredUsers: IUser[] = [];

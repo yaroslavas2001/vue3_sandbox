@@ -22,7 +22,9 @@ import ControlValidatorGroup from "@views/components/control-validator-group.vue
 //plagins
 import ErrorHandler from "./plugins/errorHandler";
 import UiTableInput from "@views/components/ui-table/ui-table-input.vue";
+import UiSelect from "@views/components/ui-select.vue";
 
+import PageTemplate from "@views/components/page-template.vue";
 // import StorageManipulatorPlugin from "@/plugins/storageManipulator";
 // import { suppressDeprecationWarnings } from "moment";
 const app = createApp(App);
@@ -47,6 +49,8 @@ app.component("ui-table", UiTable);
 app.component("ui-table-input", UiTableInput);
 app.component("ui-button", UiButton);
 app.component("ui-checkbox", UiCheckbox);
+app.component("ui-select", UiSelect);
+app.component("page-template", PageTemplate);
 app.component("ui-loading", UiLoading);
 app.component("ui-image-preview", UiImagePreview);
 app.component("ui-crop-image", UiCropImage);

@@ -1,5 +1,8 @@
 <template>
-<h1>Документы</h1>
+<page-template name="Документы" ref="Page-template">
+
+    
+</page-template>
 
 </template>
 <script lang="ts">

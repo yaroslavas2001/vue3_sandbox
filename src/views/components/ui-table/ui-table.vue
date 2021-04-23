@@ -119,7 +119,7 @@ export default class UiTableComponent extends Vue {
   position: relative;
   overflow-x: auto;
   width: 100%;
-  margin-top: 20px;
+  // margin-top: 20px;
   margin-bottom: 10px;
   .noitem {
     text-align: center;

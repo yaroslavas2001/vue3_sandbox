@@ -6,7 +6,12 @@
       </div>
       <slot name="btn" />
     </div>
+
+    <div class="flex">
     <slot name="input" />
+    <slot name="select" />
+     <slot name="select1" />
+     </div>
    <!--    <filter :filter="filter" @onChangeFlite="onChangeFlite">
         <input
           class="ui-table-input input"
@@ -29,18 +34,17 @@ import UiTableInput from "@/views/components/ui-table/ui-table-input.vue";
 
 @Options({
   emits: ["onFilterChanged"],
-  props: {
+   components: {
+    UiTableInput,
+  },
+    props: {
     name: {
       type: String,
       default: "Название страницы",
     },
   },
-   components: {
-    UiTableInput,
-  },
 })
 export default class PageTemplate extends Vue {
-  
   search = "";
   onChangeFlite(filter: Object) {
     console.log(this.search);
@@ -74,16 +78,22 @@ export default class PageTemplate extends Vue {
     color: #ffffff;
     border: 0px;
   }
-  .input {
-    height: 35px;
+  .flex{
+    display: flex;
+    align-items: center;
     margin-top: 19px;
-    min-width: 500px;
+    margin-bottom: 22px;
   }
-  .btn {
-    background-color: #d25338;
-    height: 36px;
-    width: 36px;
-    border: 0px;
-  }
+  // .input {
+  //   height: 35px;
+  //   margin-top: 19px;
+  //   min-width: 500px;
+  // }
+  // .btn {
+  //   background-color: #d25338;
+  //   height: 36px;
+  //   width: 36px;
+  //   border: 0px;
+  // }
 }
 </style>

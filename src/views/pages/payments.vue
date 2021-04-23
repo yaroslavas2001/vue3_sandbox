@@ -1,6 +1,8 @@
 <template>
-<h1>Платежи</h1>
+<page-template name="Платежи" ref="Page-template">
 
+    
+</page-template>
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";

@@ -1,8 +1,10 @@
 <template>
-    <div>
-     <ui-checkbox v-for="item in headerList" :key="item">{{item}}</ui-checkbox>
-
-   </div>
+<page-template name="Объекты" ref="Page-template">
+    <!-- КНОПКА ОРАНЖЕВАЯ ДЛЯ ШАБЛОНА СТРАНИЦЫ -->
+    <template #btn><button class="page__btn">Добавить</button> </template>
+    
+</page-template>
+   
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
@@ -11,6 +13,6 @@ import { Options, Vue } from "vue-class-component";
 
 })
 export default class Сatalog extends Vue {
-  headerList = [1,2,3]
+  headerList = ["Все","Не все","Почти все"]
 }
 </script>
